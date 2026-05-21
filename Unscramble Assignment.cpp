@@ -12,15 +12,11 @@ bool timeOut = false;
 void* input(ALLEGRO_THREAD* ptr, void* arg);
 void* timer(ALLEGRO_THREAD* ptr, void* arg);
 
-logic game("dictionary.txt");
-
 // Creates two threads and joins them so they run at the same time
 int main()
 {
-	//ZOOM VIDEO STUFF
-	game.setWord("Frank");
 
-	cout << game.getWord() << endl;
+	//cout << game.getWord() << endl;
 
 	ALLEGRO_THREAD* create1 = NULL, * create2 = NULL; //used for return value from thread creation
 

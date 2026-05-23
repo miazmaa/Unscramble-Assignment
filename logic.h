@@ -22,5 +22,5 @@ private:
 	int numCorrect,
 		smallWordLength,
 		mediumWordLength,
-		LargeWordLength;
+		largeWordLength;
 };

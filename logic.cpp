@@ -17,6 +17,7 @@ void logic::introduction() {
 	cout << "The amount of words you properly unscramble will decide your intellect! Aim for the highest score!";
 	cout << "Good luck! I believe in you!";
 }
+
 bool logic::createLists() {
 	ifstream wordBank("dictionary.txt");
 	if (!wordBank) {
@@ -41,17 +42,26 @@ bool logic::createLists() {
 	}
 	return true;
 }
-//this too
 bool logic::playGame() {
-
+	for (int i = 0; i < 2; i++) {
+		int index = rand() % smallWordLength;
+		selectedWords[i] = smallWords[index];
+	}
+	for (int i = 2; i < 4; i++) {
+		int index = rand() % mediumWordLength;
+		selectedWords[i] = mediumWords[index];
+	}
+	int index = rand() % largeWordLength;
+	selectedWords[4] = largeWords[index]; //picks 5 random words from the arrays to add into the current array for this round
 }
-//and this
+
 string logic::scramble(string word) {
 	random_device random;
 	mt19937 scrambler(random());
 	shuffle(word.begin(), word.end(), scrambler);
 	return word;
 }
+
 void logic::end() {
 	cout << "Game Over! You successfully unscrambled " << numCorrect << " out of 5 words!";
 	switch (numCorrect) {

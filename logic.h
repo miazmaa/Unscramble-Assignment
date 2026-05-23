@@ -13,7 +13,7 @@ public:
 	
 private:
 	std::string word;
-	std::string words[100];
+	std::string selectedWords[5]; //changed it to be used in playGame
 	std::string currentWord;
 	std::string scrambleWord(const std::string& word);
 	std::string smallWords[50]; //4-5 letter words

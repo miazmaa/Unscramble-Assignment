@@ -16,11 +16,11 @@ private:
 	std::string words[100];
 	std::string currentWord;
 	std::string scrambleWord(const std::string& word);
-	std::string shortWords[50]; //4-5 letter words
+	std::string smallWords[50]; //4-5 letter words
 	std::string mediumWords[50]; //6-7 letter words
-	std::string longWords[50]; //8+ letter words
-	int numCorrect,
-		smallWordLength,
+	std::string largeWords[50]; //8+ letter words
+	int numCorrect, //number of correct words
+		smallWordLength, //length of word arrays
 		mediumWordLength,
 		largeWordLength;
 };

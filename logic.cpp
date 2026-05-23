@@ -1,5 +1,6 @@
 #include "logic.h"
 #include <iostream>
+#include <fstream>
 using namespace std;
 logic::logic() {
 	numCorrect = 0;
@@ -14,9 +15,29 @@ void logic::introduction() {
 	cout << "The amount of words you properly unscramble will decide your intellect! Aim for the highest score!";
 	cout << "Good luck! I believe in you!";
 }
-//do this part later im lazy
 bool logic::createLists() {
-
+	ifstream wordBank("dictionary.txt");
+	if (!wordBank) {
+		cout << "ERROR: reading text file failed.";
+		return false;
+	}
+	string word; //equals the line currently being read in dictionary.txt, will be a single word
+	while (wordBank >> word) { //this loop reads the word into one of 3 arrays if it fits the word length criteria
+		int wordLength = word.length();
+		if (wordLength == 4 || wordLength == 5) {
+			smallWords[smallWordLength] = word;
+			smallWordLength++;
+		}
+		else if (wordLength == 6 || wordLength == 7) {
+			mediumWords[mediumWordLength] = word;
+			mediumWordLength++;
+		}
+		else if (wordLength >= 8) {
+			largeWords[largeWordLength] = word;
+			largeWordLength++;
+		}
+	}
+	return true;
 }
 //this too
 bool logic::playGame() {

@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <allegro5/allegro.h>
-#include "logic.h"
+
 
 using namespace std;
 
@@ -13,11 +13,8 @@ void* input(ALLEGRO_THREAD* ptr, void* arg);
 void* timer(ALLEGRO_THREAD* ptr, void* arg);
 
 // Creates two threads and joins them so they run at the same time
-int main()
+int main(int argc, char* argv[])
 {
-
-	//cout << game.getWord() << endl;
-
 	ALLEGRO_THREAD* create1 = NULL, * create2 = NULL; //used for return value from thread creation
 
 	create1 = al_create_thread(input, NULL);
@@ -49,6 +46,7 @@ int main()
 	system("pause");
 	return 0;
 }
+
 // A pointer to a function that prompts the user for input
 void* input(ALLEGRO_THREAD* ptr, void* arg)
 {

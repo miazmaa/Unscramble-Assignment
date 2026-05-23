@@ -1,6 +1,8 @@
 #include "logic.h"
 #include <iostream>
 #include <fstream>
+#include <random>
+#include <algorithm>
 using namespace std;
 logic::logic() {
 	numCorrect = 0;
@@ -45,7 +47,10 @@ bool logic::playGame() {
 }
 //and this
 string logic::scramble(string word) {
-
+	random_device random;
+	mt19937 scrambler(random());
+	shuffle(word.begin(), word.end(), scrambler);
+	return word;
 }
 void logic::end() {
 	cout << "Game Over! You successfully unscrambled " << numCorrect << " out of 5 words!";

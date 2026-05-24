@@ -14,10 +14,10 @@ logic::logic() {
 }
 
 void logic::introduction() {
-	cout << "This is a word unscramble game!";
-	cout << "You will have 5 words to unscramble in 60 seconds with varying lengths.";
-	cout << "The amount of words you properly unscramble will decide your intellect! Aim for the highest score!";
-	cout << "Good luck! I believe in you!";
+	cout << "This is a word unscramble game! \n";
+	cout << "You will have 5 words to unscramble in 60 seconds with varying lengths. \n";
+	cout << "The amount of words you properly unscramble will decide your intellect! Aim for the highest score! \n";
+	cout << "Good luck! I believe in you! \n";
 }
 
 bool logic::createLists() {
@@ -58,21 +58,22 @@ bool logic::playGame() {
 	selectedWords[4] = largeWords[index]; 
 	//proper gameplay loop:
 	for (int i = 0; i < 5; i++) {
-		if (timeOut) {
-			return false; //returns player loss if time ever runs out
-		}
 		string scrambledWord = scramble(selectedWords[i]); //scrambles the word chosen per round 
-		cout << "Unscramble: " << scrambledWord;
+		cout << "Unscramble: " << scrambledWord << "\n";
 		string userGuess;
-		while (!timeOut) {
+		while (!timeOut && !finished) {
 			cin >> userGuess;
+			if (timeOut) {
+				cout << "You ran out of time! \n";
+				return false; //returns player loss if time ever runs out
+			}
 			if (userGuess == selectedWords[i]) {
-				cout << "Great job!";
+				cout << "Great job! \n";
 				numCorrect++;
 				break;
 			}
 			else {
-				cout << "Wrong! Try again."; //user stays on the same word until they guess correctly or time runs out
+				cout << "Wrong! Try again. \n"; //user stays on the same word until they guess correctly or time runs out
 			}
 		}
 	}
@@ -88,7 +89,7 @@ string logic::scramble(string word) {
 }
 
 void logic::end() {
-	cout << "Game Over! You successfully unscrambled " << numCorrect << " out of 5 words!";
+	cout << "Game Over! You successfully unscrambled " << numCorrect << " out of 5 words! \n";
 	switch (numCorrect) {
 	case 2:
 		cout << "Keep practicing! I know you can do better next time.";

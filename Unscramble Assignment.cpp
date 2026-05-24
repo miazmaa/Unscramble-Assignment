@@ -2,7 +2,7 @@
 #include <iostream>
 #include <allegro5/allegro.h>
 #include "logic.h"
-
+#include <allegro5/allegro_native_dialog.h>
 using namespace std;
 
 bool finished = false;
@@ -12,10 +12,10 @@ void* timer(ALLEGRO_THREAD* ptr, void* arg);
 
 int main(int argc, char* argv[])
 {
-	srand(time(NULL)); //helps with seeding
+	srand(time(NULL));
 
 	if (!al_init()) {
-		cout << "Failed to initialize Allegro.";
+		al_show_native_message_box(NULL, NULL, NULL, "failed to initialize allegro!", NULL, NULL);
 		return -1;
 	}
 	logic game;

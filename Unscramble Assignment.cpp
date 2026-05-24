@@ -1,10 +1,9 @@
 #include <cstdlib>
 #include <iostream>
 #include <allegro5/allegro.h>
-
+#include "logic.h"
 
 using namespace std;
-
 
 bool finished = false;
 bool timeOut = false;

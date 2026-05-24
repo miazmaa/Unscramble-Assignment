@@ -4,6 +4,8 @@
 #include <random>
 #include <algorithm>
 using namespace std;
+extern bool finished;
+extern bool timeOut;
 logic::logic() {
 	numCorrect = 0;
 	smallWordLength = 0;
@@ -43,6 +45,7 @@ bool logic::createLists() {
 	return true;
 }
 bool logic::playGame() {
+	//picks 5 random words from the arrays to add into the current array for this round
 	for (int i = 0; i < 2; i++) {
 		int index = rand() % smallWordLength;
 		selectedWords[i] = smallWords[index];
@@ -52,7 +55,29 @@ bool logic::playGame() {
 		selectedWords[i] = mediumWords[index];
 	}
 	int index = rand() % largeWordLength;
-	selectedWords[4] = largeWords[index]; //picks 5 random words from the arrays to add into the current array for this round
+	selectedWords[4] = largeWords[index]; 
+	//proper gameplay loop:
+	for (int i = 0; i < 5; i++) {
+		if (timeOut) {
+			return false; //returns player loss if time ever runs out
+		}
+		string scrambledWord = scramble(selectedWords[i]); //scrambles the word chosen per round 
+		cout << "Unscramble: " << scrambledWord;
+		string userGuess;
+		while (!timeOut) {
+			cin >> userGuess;
+			if (userGuess == selectedWords[i]) {
+				cout << "Great job!";
+				numCorrect++;
+				break;
+			}
+			else {
+				cout << "Wrong! Try again."; //user stays on the same word until they guess correctly or time runs out
+			}
+		}
+	}
+	finished = true;
+	return true;
 }
 
 string logic::scramble(string word) {

@@ -39,16 +39,6 @@ int main(int argc, char* argv[])
 	game.end();
 
 }
-
-// A pointer to a function that prompts the user for input
-void* input(ALLEGRO_THREAD* ptr, void* arg)
-{
-	finished = false;
-	cout << "Asking for user Input?";
-	cin >> finished;
-	finished = true;
-	return NULL;
-}
 // A pointer to a function that starts the timer and checks the change in
 // finished, which is in the input thread.
 void* timer(ALLEGRO_THREAD* ptr, void* arg)

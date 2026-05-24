@@ -34,8 +34,6 @@ int main(int argc, char* argv[])
 
 	finished = true;
 
-	al_join_thread(timerThread, NULL);
-
 	al_destroy_thread(timerThread);
 
 	game.end();

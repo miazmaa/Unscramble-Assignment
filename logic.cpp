@@ -82,9 +82,15 @@ bool logic::playGame() {
 }
 
 string logic::scramble(string word) {
-	random_device random;
-	mt19937 scrambler(random());
-	shuffle(word.begin(), word.end(), scrambler);
+	int wordLength = word.length();
+	for (int i = 0; i < wordLength; i++) {
+		int charOneSwap = rand() % wordLength;
+		int charTwoSwap = rand() % wordLength;
+		char copy = word[charOneSwap];
+		word[charOneSwap] = word[charTwoSwap];
+		word[charTwoSwap] = copy;
+
+	}
 	return word;
 }
 
